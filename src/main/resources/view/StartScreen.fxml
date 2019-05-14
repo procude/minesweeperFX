@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="200.0" prefWidth="300.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mvc.controller.StartScreenController">
+   <children>
+      <VBox alignment="CENTER" layoutX="240.0" layoutY="94.0" prefHeight="200.0" prefWidth="100.0" spacing="30.0" AnchorPane.bottomAnchor="100.0" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="100.0">
+         <children>
+            <Button id="newGame" fx:id="newGame" mnemonicParsing="false" onAction="#newGameScreen" text="Új játék" />
+            <Button id="topScores" fx:id="topScores" mnemonicParsing="false" onAction="#topScoreScreen" text="Toplista" />
+            <Button id="closeGame" fx:id="closeGame" mnemonicParsing="false" onAction="#handleCloseGame" text="Bezárás" />
+         </children>
+      </VBox>
+   </children>
+</AnchorPane>
