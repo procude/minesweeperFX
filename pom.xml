@@ -7,6 +7,46 @@
     <groupId>unideb.homework</groupId>
     <artifactId>minesweeperFX</artifactId>
     <version>1.0-SNAPSHOT</version>
+
+    <developers>
+        <developer>
+            <id>procude</id>
+            <name>Boros Bence</name>
+            <email>11oconer11@gmail.com</email>
+        </developer>
+    </developers>
+
+    <description>Aknakereső JavaFX alkalmazás. </description>
+
+    <inceptionYear>2019</inceptionYear>
+    <organization>
+        <name>Boros Bence</name>
+    </organization>
+
+    <licenses>
+        <license>
+            <name>GNU GENERAL PUBLIC LICENSE, Version 3</name>
+            <url>http://www.gnu.org/licenses/gpl-3.0.html</url>
+        </license>
+    </licenses>
+
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.build.outputEncoding>UTF-8</project.build.outputEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+        <main.class>mvc.MainApp</main.class>
+        <site.basedir>${project.basedir}</site.basedir>
+    </properties>
+
+    <scm>
+        <connection>
+            scm:https://github.com/procude/minesweeperFX.git
+        </connection>
+        <url>
+            https://github.com/procude/minesweeperFX.git
+        </url>
+    </scm>
+
     <build>
         <plugins>
 
@@ -18,6 +58,29 @@
                     <source>8</source>
                     <target>8</target>
                 </configuration>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-enforcer-plugin</artifactId>
+                <version>1.4.1</version>
+                <executions>
+                    <execution>
+                        <id>enforce-versions</id>
+                        <goals>
+                            <goal>enforce</goal>
+                        </goals>
+                        <phase>validate</phase>
+                        <configuration>
+                            <rules>
+                                <requireJavaVersion>
+                                    <version>[1.8,)</version>
+                                    <message>JDK 8 or later is required!</message>
+                                </requireJavaVersion>
+                            </rules>
+                        </configuration>
+                    </execution>
+                </executions>
             </plugin>
 
             <plugin>
