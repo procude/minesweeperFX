@@ -1,8 +1,5 @@
-package mvc;
+package mvc.model;
 
-import mvc.model.Game;
-import mvc.model.Level;
-import mvc.model.Tile;
 import org.junit.Test;
 
 import static org.junit.Assert.*;
@@ -10,7 +7,7 @@ import static org.junit.Assert.*;
 public class GameTest {
 
     private static Tile[][] generateBoard(int rowTiles, int columnTiles) {
-        Tile board[][] = new Tile[rowTiles][columnTiles];
+        Tile[][] board = new Tile[rowTiles][columnTiles];
         for (int y = 0; y < columnTiles; y++) {
             for (int x = 0; x < rowTiles; x++) {
                 Tile tile = new Tile();
@@ -27,11 +24,11 @@ public class GameTest {
     public void testIsOnBoard() {
         Game game = new Game();
         Level level = Level.EASY;
-        game.setRowTiles(5);
-        game.setColumnTiles(5);
-        assertEquals(game.isOnBoard(4, 4, level), true);
-        assertEquals(game.isOnBoard(0, 0, level), true);
-        assertEquals(game.isOnBoard(5, 5, level), false);
+        game.setRowTiles(level.rowTiles);
+        game.setColumnTiles(level.columnTiles);
+        assertTrue(game.isOnBoard(level.rowTiles-1, level.columnTiles-1, level));
+        assertTrue(game.isOnBoard(0, 0, level));
+        assertFalse(game.isOnBoard(level.rowTiles, level.columnTiles, level));
     }
 
     @Test
@@ -39,7 +36,7 @@ public class GameTest {
         Game game = new Game();
         game.setRowTiles(10);
         game.setColumnTiles(10);
-        Tile board[][] = generateBoard(game.getRowTiles(), game.getColumnTiles());
+        Tile[][] board = generateBoard(game.getRowTiles(), game.getColumnTiles());
         assertFalse(game.isSolved(board));
         for (int i = 0; i < game.getRowTiles(); i++) {
             for (int j = 0; j < game.getColumnTiles(); j++) {
@@ -61,10 +58,10 @@ public class GameTest {
         Level level = Level.EASY;
         game.setRowTiles(level.rowTiles);
         game.setColumnTiles(level.columnTiles);
-        Tile board[][] = generateBoard(5, 5);
+        Tile[][] board = generateBoard(level.rowTiles, level.columnTiles);
         assertEquals(8, game.getNeighbors(board[2][2], board, level).size());
-        assertFalse(7 == game.getNeighbors(board[2][2], board, level).size());
+        assertNotEquals(7, game.getNeighbors(board[2][2], board, level).size());
         assertEquals(3, game.getNeighbors(board[0][0], board, level).size());
-        assertFalse(8 == game.getNeighbors(board[4][4], board, level).size());
+        assertNotEquals(8, game.getNeighbors(board[4][4], board, level).size());
     }
 }

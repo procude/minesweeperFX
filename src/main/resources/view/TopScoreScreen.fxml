@@ -13,7 +13,7 @@
             <TableColumn fx:id="created" prefWidth="162.5" text="Dátum" />
         </columns>
       </TableView>
-      <Label layoutX="272.0" layoutY="32.0" text="Top 10 Játék:">
+      <Label layoutX="272.0" layoutY="32.0" text="Top 20 Játék:">
          <font>
             <Font size="22.0" />
          </font>

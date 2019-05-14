@@ -3,9 +3,9 @@ package mvc.model;
 
 public class Level {
 
-    public static Level EASY = new Level("Könnyű",0,5,5,1, 200,200);
-    public static Level MEDIUM = new Level("Közepes",1,10,10,10,400,400);
-    public static Level HARD = new Level("Nehéz",2,20,20,40,800,800);
+    public static Level EASY = new Level("Könnyű",0,5,5,5, 200,200);
+    public static Level MEDIUM = new Level("Közepes",1,10,10,20,400,400);
+    public static Level HARD = new Level("Nehéz",2,20,20,80,800,800);
 
     public String name;
     public int id;
