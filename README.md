@@ -2,11 +2,11 @@
 
 Ez egy egyszerű aknakereső program.
 
-## Használt technológiák
+## Használt technológiák:
 
-*Maven
-*JavaFX
-*JPA
+* Maven
+* JavaFX
+* JPA
 
 ## Telepítés
 
@@ -20,6 +20,6 @@ mvn package
 cd target
 java -jar minesweeperFX-1.0-jar-with-dependencies.jar
 ```
-##License
+## License
 
 GNU GPLv3
