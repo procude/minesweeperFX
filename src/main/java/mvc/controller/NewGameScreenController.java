@@ -8,6 +8,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
 import mvc.model.Level;
+import org.pmw.tinylog.Logger;
 
 import java.io.IOException;
 
@@ -24,19 +25,20 @@ public class NewGameScreenController {
     @FXML
     private RadioButton mediumRadioButton;
 
-    Level level;
+    private Level level;
 
     @FXML
     public void gameScreen(ActionEvent actionEvent) throws IOException {
+        Logger.info("A NewGameScreen betöltve.");
         Stage stage;
         Parent root;
 
         if (easyRadioButton.isSelected()) {
-            level = level.EASY;
+            level = Level.EASY;
         } else if (mediumRadioButton.isSelected()) {
-            level = level.MEDIUM;
+            level = Level.MEDIUM;
         } else {
-            level = level.HARD;
+            level = Level.HARD;
         }
 
         if (userNameTextfield.getText().isEmpty()) {
@@ -44,6 +46,7 @@ public class NewGameScreenController {
             alert.setTitle("Hiba");
             alert.setHeaderText("Sikertelen indítás!");
             alert.setContentText("Adjon meg egy játékosnevet!");
+            Logger.error("{}",alert.getContentText());
             alert.showAndWait();
             if (alert.getResult() == ButtonType.OK) {
                 alert.close();
@@ -60,6 +63,7 @@ public class NewGameScreenController {
             stage.show();
             stage.setResizable(false);
             stage.setTitle("Aknakereső");
+            Logger.info("Új játék indítása.");
             Stage actualStage = (Stage) playButton.getScene().getWindow();
             actualStage.close();
         }
@@ -75,6 +79,7 @@ public class NewGameScreenController {
         stage.setScene(scene);
         stage.show();
         stage.setTitle("Aknakereső");
+        Logger.info("Visszalépés a StartScreenre.");
         Stage actualStage = (Stage) backButton.getScene().getWindow();
         actualStage.close();
     }

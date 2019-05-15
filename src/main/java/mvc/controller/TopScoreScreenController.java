@@ -19,6 +19,7 @@ import mvc.model.PersistenceModule;
 import mvc.model.Score;
 import mvc.model.ScoreDao;
 import org.apache.commons.lang3.time.DurationFormatUtils;
+import org.pmw.tinylog.Logger;
 
 import java.io.IOException;
 import java.time.Duration;
@@ -48,10 +49,9 @@ public class TopScoreScreenController {
     @FXML
     private TableColumn<Score, ZonedDateTime> created;
 
-
-
     @FXML
     public void startScreen(ActionEvent actionEvent) throws IOException {
+        Logger.info("A TopScoresScreen betöltve.");
         Stage stage = new Stage();
         Parent root;
         FXMLLoader startGamefXMLLoader = new FXMLLoader(getClass().getResource("/view/StartScreen.fxml"));
@@ -60,6 +60,7 @@ public class TopScoreScreenController {
         stage.setScene(scene);
         stage.show();
         stage.setTitle("Aknakereső");
+        Logger.info("Visszalépés a StartScreenre.");
         Stage actualStage = (Stage) backButton.getScene().getWindow();
         actualStage.close();
     }

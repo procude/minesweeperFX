@@ -8,6 +8,9 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.stage.Stage;
 
+import org.pmw.tinylog.Logger;
+
+
 import java.io.IOException;
 
 
@@ -20,6 +23,7 @@ public class StartScreenController {
 
     @FXML
     public void newGameScreen(ActionEvent actionEvent) throws IOException {
+        Logger.info("A StartScreen betöltve.");
         Stage stage = new Stage();
         Parent root;
         FXMLLoader newGamefXMLLoader = new FXMLLoader(getClass().getResource("/view/NewGameScreen.fxml"));
@@ -28,6 +32,7 @@ public class StartScreenController {
         stage.setScene(scene);
         stage.show();
         stage.setTitle("Új játék");
+        Logger.info("Új játék szándéka.");
         Stage actualStage = (Stage) newGame.getScene().getWindow();
         actualStage.close();
     }
@@ -42,6 +47,7 @@ public class StartScreenController {
         stage.setScene(scene);
         stage.show();
         stage.setTitle("Toplista");
+        Logger.info("Toplista megnyitása.");
         Stage actualStage = (Stage) topScores.getScene().getWindow();
         actualStage.close();
     }

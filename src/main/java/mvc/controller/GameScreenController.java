@@ -19,6 +19,7 @@ import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import mvc.model.*;
+import org.pmw.tinylog.Logger;
 
 import java.io.IOException;
 import java.time.Duration;
@@ -61,6 +62,7 @@ public class GameScreenController {
         initPlayer(userName);
 
         initGame(level);
+        Logger.info("Játék inicializálása.");
 
         initGrid(root);
 
@@ -201,6 +203,7 @@ public class GameScreenController {
         alert.setContentText(
                 "Vesztettél. Ha az OK gombra kattintasz új játékot kezdhetsz.");
         alert.showAndWait();
+        Logger.info("Játék vége: {}", alert.getContentText());
         if (alert.getResult() == ButtonType.OK) {
             Stage stage = new Stage();
             FXMLLoader newGamefXMLLoader = new FXMLLoader(getClass().getResource("/view/NewGameScreen.fxml"));
@@ -216,6 +219,7 @@ public class GameScreenController {
                 errorAlert.setTitle("Error");
                 alert.setContentText("Váratlan hiba történt: " + e.getMessage() + "\nKérlek próbáld újra!");
                 errorAlert.showAndWait();
+                Logger.info("{}", alert.getContentText());
                 if (errorAlert.getResult() == ButtonType.OK) {
                     errorAlert.close();
                 }
@@ -237,6 +241,7 @@ public class GameScreenController {
             alert.setHeaderText("Siker!");
             alert.setContentText("Jól jelölted meg az összes aknát! Vége a játéknak.");
             alert.showAndWait();
+            Logger.info("Játék vége: {}", alert.getContentText());
             if (alert.getResult() == ButtonType.OK) {
                 Stage stage = new Stage();
                 FXMLLoader newGamefXMLLoader = new FXMLLoader(getClass().getResource("/view/NewGameScreen.fxml"));
@@ -252,6 +257,7 @@ public class GameScreenController {
                     errorAlert.setTitle("Error");
                     alert.setContentText("Váratlan hiba történt: " + e.getMessage() + "\nKérlek próbáld újra!");
                     errorAlert.showAndWait();
+                    Logger.info("{}", alert.getContentText());
                     if (errorAlert.getResult() == ButtonType.OK) {
                         errorAlert.close();
                     }
