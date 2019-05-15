@@ -2,6 +2,8 @@ package mvc.model;
 
 import org.junit.Test;
 
+import java.util.Random;
+
 import static org.junit.Assert.*;
 
 public class GameTest {
@@ -13,11 +15,34 @@ public class GameTest {
                 Tile tile = new Tile();
                 tile.setX(x);
                 tile.setY(y);
-                tile.setMine(Math.random() < 0.1);
                 board[x][y] = tile;
             }
         }
         return board;
+    }
+
+    public void setMines(Level level, Tile[][] board){
+
+        Random row = new Random();
+        Random column = new Random();
+        int mineIndexRow;
+        int minIndexColumn;
+        int i = 0;
+        while (i < level.mines) {
+            mineIndexRow = row.nextInt(level.rowTiles);
+            minIndexColumn = column.nextInt(level.columnTiles);
+            if (board[mineIndexRow][minIndexColumn].isMine()) {
+                continue;
+            }
+            i++;
+            board[mineIndexRow][minIndexColumn].setMine(true);
+        }
+    }
+
+    @Test
+    public void testGame(){
+        Game game = new Game();
+        assertNotNull(game);
     }
 
     @Test
@@ -63,5 +88,23 @@ public class GameTest {
         assertNotEquals(7, game.getNeighbors(board[2][2], board, level).size());
         assertEquals(3, game.getNeighbors(board[0][0], board, level).size());
         assertNotEquals(8, game.getNeighbors(board[4][4], board, level).size());
+    }
+
+    @Test
+    public void testMines(){
+        Game game = new Game();
+        Level level = Level.HARD;
+        game.setRowTiles(level.rowTiles);
+        game.setColumnTiles(level.columnTiles);
+        Tile[][] board = generateBoard(level.rowTiles,level.columnTiles);
+        setMines(level, board);
+        int mines = 0;
+        for(int i=0; i< level.rowTiles; i++) {
+            for(int j=0; j<level.columnTiles; j++) {
+                if (board[i][j].isMine())
+                    mines++;
+            }
+        }
+        assertEquals(mines, level.mines);
     }
 }

@@ -320,7 +320,6 @@ public class GameScreenController {
             }
         }
         gameOver();
-        scoreDao.remove(getScore());
     }
 
     public void mark(Tile tile){
